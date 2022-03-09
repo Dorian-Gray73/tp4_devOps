@@ -93,7 +93,9 @@ public class MyUnsortedList<E> implements UnsortedList<E> {
     }
 
     @Override
-    public E popLast() {
+    public E popLast() throws EmptyListException{
+        if (size == 0)
+            throw new EmptyListException();
         return remove(size - 1);
     }
 
@@ -106,6 +108,7 @@ public class MyUnsortedList<E> implements UnsortedList<E> {
             return pop();
         }
 
+        size --;
         Link<E> prevLink = head;
         while (--pos > 0) {
             prevLink = prevLink.next;
